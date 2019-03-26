@@ -7,7 +7,7 @@ from importlib import import_module
 import Database
 
 def main():
-    databaseName = 'data.db3'
+    databaseName = 'data.sqlite3'
     with Database.Database(databaseName) as database:
         moduleNameAndClass = {}
         for moduleName in database.GetUsedModuleNames():
