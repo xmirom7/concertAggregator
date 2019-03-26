@@ -34,7 +34,7 @@ class Bandsintown():
         dateString = self.jsonData[index]['datetime']
         #todo timezone should be based on the country and not fixed CET
         dtm = datetime.datetime.strptime('{}+0100'.format(dateString), '%Y-%m-%dT%H:%M:%S%z')
-        return dtm.astimezone(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')
+        return dtm
 
     def GetClubNameByIndex(self, index, bandName):
         if self.bandName != bandName:

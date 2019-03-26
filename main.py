@@ -1,7 +1,10 @@
 import sys
-del sys.modules['Database']
-del sys.modules['Bandsintown']
-del sys.modules['Songkick']
+try:
+    del sys.modules['Database']
+    del sys.modules['Bandsintown']
+    del sys.modules['Songkick']
+except KeyError:
+    None
 
 from importlib import import_module
 import Database

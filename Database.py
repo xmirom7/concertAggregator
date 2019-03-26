@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from sqlite3 import Error
 
 class Database():
@@ -26,10 +27,11 @@ class Database():
 
     def SaveEvent(self, band, country, city, date, clubName='', url='', additionalInfo=''):
         try:
+            dateString = date.astimezone(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')
             query = '''INSERT INTO events(band, country, city, clubName, date, url, additionalInfo)
             VALUES(?,?,?,?,?,?,?);'''
             cursor = self.connection.cursor()
-            cursor.execute(query, (band, country, city, clubName, date, url, additionalInfo))
+            cursor.execute(query, (band, country, city, clubName, dateString, url, additionalInfo))
             self.connection.commit()
             return cursor.lastrowid
         except sqlite3.IntegrityError as error:

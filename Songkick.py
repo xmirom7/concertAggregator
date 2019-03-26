@@ -38,7 +38,7 @@ class Songkick():
             time = datetime.datetime.strptime('{}+0100'.format(timeString), '%Y-%m-%d%z')
         else:
             time = datetime.datetime.strptime(timeString, '%Y-%m-%dT%H:%M:%S%z')
-        return time.astimezone(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')
+        return time
 
     def GetClubNameByIndex(self, index, args):
         if self.args != args:
