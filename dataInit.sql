@@ -17,4 +17,6 @@ VALUES
 ('Sum 41', 0, 'sum 41'),
 ('Dropkick Murphys', 0, 'dropkick murphys'),
 ('Polemic', 0, 'polemic'),
-('Bad Manners', 0, 'bad manners');
+('Bad Manners', 0, 'bad manners'),
+('Medial Banana', 0, 'medial banana'),
+('Horkýže Slíže', 0, 'Horkýže Slíže');
