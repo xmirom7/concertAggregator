@@ -58,9 +58,6 @@ class Bandsintown():
         encodedName = urllib.parse.quote(bandName.encode('utf-8'))
         url = 'https://rest.bandsintown.com/artists/{}/events?app_id=js_www.konflikt.sk&date=upcoming'.format(encodedName)
         response = urllib.request.urlopen(url).read()
-        if response != b'\n[]\n':
-            soup = BeautifulSoup(response, 'html.parser')
-            data = soup.prettify()
-            return json.loads(data)
-        else:
-            raise Exception('Response is empty')
+        soup = BeautifulSoup(response, 'html.parser')
+        data = soup.prettify()
+        return json.loads(data)
