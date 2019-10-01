@@ -1,11 +1,26 @@
 import sqlite3
 import datetime
 from sqlite3 import Error
+from pathlib import Path
 
 class Database():
-    def __init__(self, filePath):
-        self.connection = sqlite3.connect(filePath)
+    def __init__(self):
+        databaseFile = '../data.sqlite3'
+        path = Path(databaseFile)
+        if not path.is_file():
+            self.connection = sqlite3.connect(databaseFile)
+            self.RunScript('structure.sql')
+            self.RunScript('dataInit.sql')
+        else:
+            self.connection = sqlite3.connect(databaseFile)
 
+    def RunScript(self, fileName):
+        cursor = self.connection.cursor()
+        with open(fileName, mode='r', encoding='utf-8') as sqlFile:
+            sqlScript = sqlFile.read()
+            # print(unicode(sqlScript).encode('utf-8'))
+            cursor.executescript(sqlScript)
+            
     def GetUsedModuleNames(self):
         query = '''SELECT modules.name
         FROM bands

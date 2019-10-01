@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 try:
     del sys.modules['Database']
@@ -10,8 +12,7 @@ from importlib import import_module
 import Database
 
 def main():
-    databaseName = 'data.sqlite3'
-    with Database.Database(databaseName) as database:
+    with Database.Database() as database:
         moduleNameAndClass = {}
         for moduleName in database.GetUsedModuleNames():
             ccc = getattr(import_module(moduleName), moduleName)
